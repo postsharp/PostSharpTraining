@@ -2,6 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using ContactManager.Entities;
+using PostSharp.Patterns.Threading;
 
 namespace ContactManager
 {
@@ -37,6 +38,7 @@ namespace ContactManager
             }
         }
 
+        [Dispatched]
         public string SetStatusText( string text )
         {
             string previousText = this.pendingOperationStatusBarItem.Content as string;

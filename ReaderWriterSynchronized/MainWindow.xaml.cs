@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PostSharp.Patterns.Threading;
 
 namespace ReaderWriterSynchronized
 {
@@ -72,6 +73,7 @@ namespace ReaderWriterSynchronized
             }
         }
 
+        [Background]
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.DoRandomChange();

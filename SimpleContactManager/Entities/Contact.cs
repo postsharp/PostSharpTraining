@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using PostSharp.Patterns.Contracts;
+using PostSharp.Patterns.Model;
 
 namespace ContactManager.Entities
 {
 
     public class Contact : Entity
     {
+        private string _firstName;
+
         private Contact( bool initialized )
         {
             this.IsInitialized = initialized;
@@ -24,8 +28,20 @@ namespace ContactManager.Entities
             this.IsInitialized = true;
         }
 
-        public string FirstName { get; set; }
+        public string FirstName
+        {
+            get { return _firstName; }
+            set { _firstName = value;
+            if (value == "Gael")
+            {
+                this.Weird = "Perhaps";
+                this.OnPropertyChanged("Weird");
 
+            }
+            }
+        }
+
+        [Required]
         public string LastName { get; set; }
         
         public string Company { get; set; }
@@ -43,19 +59,24 @@ namespace ContactManager.Entities
         public int? CountryId { get; set; }
         public string Notes { get; set; }
 
+        [IgnoreAutoChangeNotification]
+        public string Weird { get; set; }
+
+         [SafeForDependencyAnalysis]
         public string DisplayName
         {
             get
             {
+
                 string header = string.Format("{0} {1}", this.FirstName,
-                                          this.LastName);
+                                            this.LastName);
                 if (!string.IsNullOrEmpty(this.Company))
                     header += string.Format(" ({0})", this.Company);
 
-                return header;
-
+                return this.PostFormat(header);  
             }
         }
+
 
         #region Micro-ORM
         protected override void Delete( DbConnection connection )
@@ -154,6 +175,15 @@ namespace ContactManager.Entities
             return contacts;
         }
         #endregion
+
+
+        protected virtual string PostFormat(string x)
+        {
+            return x + (this.Zip??"");
+        }
+
+       
+    
 
         public override string ToString()
         {

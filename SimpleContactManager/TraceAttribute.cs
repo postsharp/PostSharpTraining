@@ -3,32 +3,26 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using PostSharp.Laos;
+using PostSharp.Aspects;
 
 namespace ContactManager
 {
+    [Serializable]
     class TraceAttribute : OnMethodBoundaryAspect
     {
-        private string methodName;
-
-        public override void CompileTimeInitialize(System.Reflection.MethodBase method)
+        public override void OnEntry(MethodExecutionArgs args)
         {
-            methodName = method.ToString();
-        }
-        public override void OnEntry(MethodExecutionEventArgs eventArgs)
-        {
-            Trace.WriteLine( "Enetring" + methodName  );
-            base.OnEntry(eventArgs);
+            Trace.TraceInformation("Entering {0}.{1}", args.Method.DeclaringType.Name, args.Method.Name);
         }
 
-        public override void OnException(MethodExecutionEventArgs eventArgs)
+        public override void OnSuccess(MethodExecutionArgs args)
         {
-            base.OnException(eventArgs);
+            Trace.TraceInformation("Leaving {0}.{1}", args.Method.DeclaringType.Name, args.Method.Name);
         }
 
-        public override void OnSuccess(MethodExecutionEventArgs eventArgs)
+        public override void OnException(MethodExecutionArgs args)
         {
-            base.OnSuccess(eventArgs);
+            Trace.TraceInformation("Method {0}.{1} failed with {2}", args.Method.DeclaringType.Name, args.Method.Name, args.Exception.GetType().Name);
         }
     }
 }
