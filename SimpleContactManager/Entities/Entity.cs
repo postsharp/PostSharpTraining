@@ -1,22 +1,18 @@
 using System;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.Common;
 using System.Threading;
-using PostSharp.Patterns.Model;
 
 namespace ContactManager.Entities
 {
-    [NotifyPropertyChanged]
-    public abstract class Entity : INotifyPropertyChanged
+    public abstract class Entity
     {
         private static DbProviderFactory dbProviderFactory;
         private static string connectionString;
 
         protected bool IsInitialized { get; set; }
         public static bool IsDesignTime { get; set; }
-        private int revision;
 
         static Entity()
         {
@@ -140,18 +136,6 @@ namespace ContactManager.Entities
                     lastNameParam.Value = parts[1];
                     command2.ExecuteNonQuery();
                 }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            if (this.IsInitialized)
-            {
-                this.revision++;
-                PropertyChangedEventHandler handler = PropertyChanged;
-                if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     }

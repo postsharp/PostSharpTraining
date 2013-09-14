@@ -70,7 +70,7 @@
             </TextBox.Text>
         </TextBox>
             <TextBox Margin="81,105.831,8,112.892" Text="{Binding Path=AddressLine1}" TextWrapping="Wrap" d:LayoutOverrides="Height"/>
-    	<TextBox Margin="81,0,8,89.615" Text="{Binding Path=Weird}" TextWrapping="Wrap" VerticalAlignment="Bottom" d:LayoutOverrides="Height"/>
+    	<TextBox Margin="81,0,8,89.615" Text="{Binding Path=AddressLine2}" TextWrapping="Wrap" VerticalAlignment="Bottom" d:LayoutOverrides="Height"/>
     	<Label HorizontalAlignment="Left" Margin="12,0,0,61.615" Width="69" Content="Town" VerticalAlignment="Bottom" Height="24"/>
 
         <TextBox Margin="81,0,0,66.339"  TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="59" d:LayoutOverrides="Height">
