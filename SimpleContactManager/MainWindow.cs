@@ -10,6 +10,7 @@ namespace ContactManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        
         public static MainWindow Instance { get; private set; }
 
         public MainWindow()
@@ -29,9 +30,8 @@ namespace ContactManager
         {
             base.OnInitialized( e );
 
-            Entity.Initialize();
 
-            foreach ( Contact contact in Contact.GetContacts() )
+            foreach ( Contact contact in DatabaseMock.Instance.Contacts )
             {
                 contactListBox.Items.Add( contact );
             }
@@ -47,20 +47,13 @@ namespace ContactManager
         private void OnRefreshClick( object sender, RoutedEventArgs e )
         {
             contactListBox.Items.Clear();
-            foreach ( Contact contact in Contact.GetContacts() )
+            foreach (Contact contact in DatabaseMock.Instance.Contacts)
             {
                 contactListBox.Items.Add( contact );
             }
         }
 
-        private void OnRepopulateClick( object sender, RoutedEventArgs e )
-        {
-            Entity.Repopulate();
-            MessageBox.Show( "You need to restart the application." );
-            this.Close();
-        }
-
-
+      
       
 
         private void ContactListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -12,10 +12,7 @@
               <Button Click="OnRefreshClick" ToolTip="Refresh">
               <Image Source="Resources/RefreshDocViewHS.png" Width="16" Height="16"/>
               </Button>
-        <Button Click="OnRepopulateClick" ToolTip="Repopulate">
-            
-            <Image Source="Resources/SychronizeListHS.png" Width="16" Height="16"/>
-        </Button>
+        
         </ToolBar>
             </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom" Height="25" >

@@ -4,14 +4,14 @@ using System.Windows.Data;
 
 namespace ContactManager
 {
-    [ValueConversion( typeof(int), typeof(int) )]
+    [ValueConversion( typeof(Guid), typeof(int) )]
     public class CountryIdToPositionConverter : IValueConverter
     {
         private readonly CountrySource countries = new CountrySource();
 
         public object Convert( object value, Type targetType, object parameter, CultureInfo culture )
         {
-            int? countryId = (int?) value;
+            Guid? countryId = (Guid?)value;
             if ( !countryId.HasValue ) return -1;
             return this.countries.FindIndex( countryId.Value );
         }

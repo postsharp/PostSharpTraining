@@ -4,21 +4,21 @@
     Height="238" Width="300" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" xmlns:ContactManager="clr-namespace:ContactManager" xmlns:Entities="clr-namespace:ContactManager.Entities">
 	<UserControl.Resources>
 		<ContactManager:CountryIdToPositionConverter x:Key="CountryIdToPositionConverter"/>
-		<ObjectDataProvider x:Key="CountrySourceDS" d:IsDataSource="True" ObjectType="{x:Type ContactManager:CountrySource}"/>
+		<ObjectDataProvider x:Key="Countries" d:IsDataSource="True" ObjectType="{x:Type ContactManager:CountrySource}"/>
 	</UserControl.Resources>
 	<UserControl.Background>
 		<SolidColorBrush Color="{DynamicResource {x:Static SystemColors.WindowColorKey}}"/>
 	</UserControl.Background>
 	<UserControl.DataContext>
 		<Entities:Contact 
-            FirstName="Bill" 
-            LastName="Gates"
+            FirstName="John" 
+            LastName="Walker"
             Company="Microsoft"
-            Position="Retired"
-            AddressLine1="Microsoft Way 1"
+            Position="SDE"
+            AddressLine1="Microsoft Way One"
             Zip="12345"
-            Town="Redmont"
-            CountryId="1"
+            Town="Seatle"
+            
             />
 	</UserControl.DataContext>
     <Grid>
@@ -85,7 +85,7 @@
             <TextBox Margin="144,0,8,66.339" Text="{Binding Path=Town}" TextWrapping="Wrap" VerticalAlignment="Bottom"/>
     	<Label HorizontalAlignment="Left" Margin="12,0,0,33.615" Width="69" Content="Country" VerticalAlignment="Bottom" Height="24"/>
             
-    	<ComboBox IsSynchronizedWithCurrentItem="True" Margin="81,0,8,41.062" VerticalAlignment="Bottom" SelectedIndex="{Binding Path=CountryId, Converter={StaticResource CountryIdToPositionConverter}, Mode=Default}" ItemsSource="{Binding Mode=OneWay, Source={StaticResource CountrySourceDS}}"/>
+    	<ComboBox IsSynchronizedWithCurrentItem="True" Margin="81,0,8,41.062" VerticalAlignment="Bottom" SelectedIndex="{Binding Path=CountryId, Converter={StaticResource CountryIdToPositionConverter}, Mode=Default}" ItemsSource="{Binding Mode=OneWay, Source={StaticResource Countries}}"/>
         <Button Height="23" HorizontalAlignment="Left" Margin="70,0,0,4" Name="okButton" VerticalAlignment="Bottom" Width="75" Click="OnApplyClick">Apply</Button>
         <Button Height="23" HorizontalAlignment="Right" Margin="0,0,73,4" Name="deleteButton" VerticalAlignment="Bottom" Width="75" Click="OnDeleteClick">Delete</Button>
     </Grid>
