@@ -10,7 +10,7 @@ namespace ContactManager.Entities
         public Country(string name)
         {
             this.Name = name;
-            this.Id = Guid.NewGuid();
+            this.Id = MakeId();
         }
 
         public string Name { get; private set; }

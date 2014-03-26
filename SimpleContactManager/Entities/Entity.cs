@@ -8,17 +8,22 @@ namespace ContactManager.Entities
 {
     public abstract class Entity
     {
+        private static int nextId;
+        public static int MakeId()
+        {
+            return Interlocked.Increment(ref nextId);
+        }
 
         protected bool IsInitialized { get; set; }
 
       
 
 
-        public Guid Id { get; protected set; }
+        public int Id { get; protected set; }
 
         public bool IsNew
         {
-            get { return this.Id == Guid.Empty; }
+            get { return this.Id == 0; }
         }
 
         public bool IsDeleted { get; private set; }
@@ -30,7 +35,7 @@ namespace ContactManager.Entities
             Thread.Sleep(1000);
             if (this.IsNew)
             {
-                this.Id = Guid.NewGuid();
+                this.Id = MakeId();
             }
         }
 

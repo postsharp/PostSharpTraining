@@ -41,7 +41,7 @@ namespace ContactManager.Entities
         
         public string Town { get; set; }
 
-        public Guid? CountryId { get; set; }
+        public int? CountryId { get; set; }
         public string Notes { get; set; }
 
         public string DisplayName

@@ -11,7 +11,7 @@ namespace ContactManager
         {
         }
 
-        public int FindIndex( Guid countryId )
+        public int FindIndex( int countryId )
         {
             for ( int i = 0; i < this.Count; i++ )
             {
