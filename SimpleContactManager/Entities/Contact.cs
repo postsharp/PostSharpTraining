@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using PostSharp.Patterns.Contracts;
 
 namespace ContactManager.Entities
 {
@@ -25,8 +26,10 @@ namespace ContactManager.Entities
             this.IsInitialized = true;
         }
 
+        [Required]
         public string FirstName { get; set; }
 
+        [Required]
         public string LastName { get; set; }
         
         public string Company { get; set; }
