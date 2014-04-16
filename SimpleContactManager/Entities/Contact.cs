@@ -4,27 +4,25 @@ using System.Data;
 using System.Data.Common;
 using PostSharp.Patterns.Contracts;
 using PostSharp.Patterns.Recording;
+using PostSharp.Patterns.Model;
+using PostSharp.Patterns.Collections;
 
 namespace ContactManager.Entities
 {
     [Recordable]
     public class Contact : Entity
     {
-        private Contact( bool initialized )
-        {
-            this.IsInitialized = initialized;
-        }
+        [Child]
+        AdvisableCollection<Address> addresses = new AdvisableCollection<Address>();
 
         public Contact()
         {
-            this.IsInitialized = true;
         }
 
         public Contact( string firstName, string lastName )
         {
             this.FirstName = firstName;
             this.LastName = lastName;
-            this.IsInitialized = true;
         }
 
         [Required]
@@ -37,30 +35,30 @@ namespace ContactManager.Entities
         
         public string Position { get; set; }
         
-        public string AddressLine1 { get; set; }
-        
-        public string AddressLine2 { get; set; }
-        
-        public string Zip { get; set; }
-        
-        public string Town { get; set; }
-
-        public int? CountryId { get; set; }
         public string Notes { get; set; }
-
+        
+        public IList<Address> Addresses { get { return this.addresses; } }
+        
+        [Child]
+        public Address PrincipalAddress { get; set; }
+        
         public string DisplayName
         {
             get
             {
-                string header = string.Format("{0} {1}", this.FirstName,
-                                          this.LastName);
-                if (!string.IsNullOrEmpty(this.Company))
-                    header += string.Format(" ({0})", this.Company);
+                string header = this.FullName ;
+
+                if ( this.PrincipalAddress != null && this.PrincipalAddress.Town != null )
+                {
+                    header += " from " + this.PrincipalAddress.Town;
+                }
 
                 return header;
 
             }
         }
+
+        public string FullName { get { return string.Format("{0} {1}", this.FirstName, this.LastName); } }
 
         public override string ToString()
         {

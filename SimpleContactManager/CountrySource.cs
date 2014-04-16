@@ -11,15 +11,6 @@ namespace ContactManager
         {
         }
 
-        public int FindIndex( int countryId )
-        {
-            for ( int i = 0; i < this.Count; i++ )
-            {
-                if ( this[i].Id == countryId )
-                    return i;
-            }
-
-            return -1;
-        }
+        
     }
 }

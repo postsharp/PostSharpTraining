@@ -2,6 +2,8 @@ using System.Windows;
 using System.Windows.Controls;
 using ContactManager.Entities;
 using PostSharp.Patterns.Threading;
+using System.Threading;
+using System.Linq;
 
 namespace ContactManager
 {
@@ -20,7 +22,7 @@ namespace ContactManager
         public ContactControl(Contact contact)
             : this()
         {
-            this.DataContext = contact;
+            this.DataContext = new ContactViewModel(contact);
             this.contact = contact;
         }
 
@@ -29,14 +31,30 @@ namespace ContactManager
         [Status("Saving")]
         void OnApplyClick(object sender, RoutedEventArgs e)
         {
-            this.contact.Save();
+            Thread.Sleep(2000);
         }
 
         [Background]
         [Status("Deleting")]
         void OnDeleteClick(object sender, RoutedEventArgs e)
         {
-            this.contact.Delete();
+            Thread.Sleep(2000);
         }
+
+          private void AddAddressButton_Click(object sender, RoutedEventArgs e)
+          {
+              Address address = new Address();
+              this.contact.Addresses.Add(address);
+              this.contact.PrincipalAddress = address;
+    }
+
+          private void RemoveAddressButton_Click(object sender, RoutedEventArgs e)
+          {
+              if ( this.contact.PrincipalAddress != null )
+              {
+                  this.contact.Addresses.Remove(this.contact.PrincipalAddress);
+                  this.contact.PrincipalAddress = this.contact.Addresses.FirstOrDefault();
+              }
+          }
     }
 }

@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ContactManager.AddressControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+                xmlns:ContactManager="clr-namespace:ContactManager" 
+             xmlns:Entities="clr-namespace:ContactManager.Entities"
+             d:DesignHeight="157" Width="519">
+    <UserControl.Resources>
+        <ObjectDataProvider x:Key="Countries" d:IsDataSource="True" ObjectType="{x:Type ContactManager:CountrySource}"/>
+    </UserControl.Resources>
+    <Grid Height="148" VerticalAlignment="Top" >
+        <TextBox Margin="150,4,19,0" Text="{Binding Path=AddressLine1}" TextWrapping="Wrap" Height="82" VerticalAlignment="Top"/>
+        <Label HorizontalAlignment="Left" Margin="1,90,0,0" Width="69" Content="Town" VerticalAlignment="Top" Height="24"/>
+        <Label HorizontalAlignment="Left" Margin="1,2,0,0" Width="69" Content="Address " Height="86" VerticalAlignment="Top"/>
+
+        <TextBox Margin="150,92,0,0"  TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Top" Width="48">
+            <TextBox.Text>
+                <Binding Path="Zip">
+                    <Binding.ValidationRules>
+                        <ExceptionValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+        <TextBox Margin="201,92,19,0" Text="{Binding Path=Town}" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label HorizontalAlignment="Left" Margin="1,118,0,0" Width="69" Content="Country" VerticalAlignment="Top" Height="24"/>
+
+        <ComboBox IsSynchronizedWithCurrentItem="True" Margin="150,113,19,0" VerticalAlignment="Top" SelectedItem="{Binding Path=Country}" ItemsSource="{Binding Mode=OneWay, Source={StaticResource Countries}}"/>
+
+    </Grid>
+</UserControl>

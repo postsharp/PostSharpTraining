@@ -98,6 +98,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="StatusAttribute.cs" />
+    <Page Include="AddressControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ContactControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -110,10 +114,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="AddressControl.xaml.cs">
+      <DependentUpon>AddressControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ContactViewModel.cs" />
+    <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\DatabaseMock.cs" />
     <Compile Include="MainWindow.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -124,7 +133,6 @@
     <Compile Include="ContactControl.xaml.cs">
       <DependentUpon>ContactControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="CountryIdToPositionConverter.cs" />
     <Compile Include="CountrySource.cs" />
     <Compile Include="Entities\Contact.cs" />
     <Compile Include="Entities\Country.cs" />

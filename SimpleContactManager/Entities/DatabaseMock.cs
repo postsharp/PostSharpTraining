@@ -17,16 +17,27 @@ namespace ContactManager.Entities
             this.Contacts = new List<Contact>();
             this.countries = new List<Country>();
 
-            foreach (string contact in Populate.GetContacts())
-            {
-                string[] names = contact.Split(' ');
-                this.Contacts.Add(new Contact(names[0], names[1]));
-            }
-
-
             foreach (string country in Populate.GetCountries())
             {
                 this.countries.Add(new Country(country));
+            }
+
+            Country russia = this.countries.Single( c => c.Name == "Russia");
+
+            foreach (string contactName in Populate.GetContacts())
+            {
+                string[] names = contactName.Split(' ');
+                Contact contact = new Contact(names[0], names[1]);
+                Address address = new Address
+                {
+                    AddressLine1 = "23, Ilyinka Street",
+                    Town = "Moscow",
+                    Zip = "103132",
+                    Country = russia
+                };
+                contact.Addresses.Add(address);
+                contact.PrincipalAddress = address;
+                this.Contacts.Add(contact);
             }
 
             RecordingServices.DefaultRecorder.Clear();
