@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using PostSharp.Patterns.Contracts;
+using PostSharp.Patterns.Recording;
 
 namespace ContactManager.Entities
 {
-
+    [Recordable]
     public class Contact : Entity
     {
         private Contact( bool initialized )

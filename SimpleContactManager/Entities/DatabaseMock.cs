@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PostSharp.Patterns.Recording;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,8 @@ namespace ContactManager.Entities
             {
                 this.countries.Add(new Country(country));
             }
+
+            RecordingServices.DefaultRecorder.Clear();
         }
 
         public IList<Contact> Contacts { get; private set; }

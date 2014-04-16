@@ -88,9 +88,10 @@ namespace ReaderWriterSynchronized
             get { return _discounts; }
         }
 
-       // [Reader]
+        [Reader]
         public void Save(MemoryStream memoryStream)
         {
+            // Check invariant.
             if ( this.Lines.Count != 0 && this.Lines.Count != 5 )
                 throw new Exception();
 
