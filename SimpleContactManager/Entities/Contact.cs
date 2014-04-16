@@ -5,24 +5,18 @@ using System.Data.Common;
 
 namespace ContactManager.Entities
 {
-
     public class Contact : Entity
     {
-        private Contact( bool initialized )
-        {
-            this.IsInitialized = initialized;
-        }
+        List<Address> addresses = new List<Address>();
 
         public Contact()
         {
-            this.IsInitialized = true;
         }
 
         public Contact( string firstName, string lastName )
         {
             this.FirstName = firstName;
             this.LastName = lastName;
-            this.IsInitialized = true;
         }
 
         public string FirstName { get; set; }
@@ -32,31 +26,30 @@ namespace ContactManager.Entities
         public string Company { get; set; }
         
         public string Position { get; set; }
-        
-        public string AddressLine1 { get; set; }
-        
-        public string AddressLine2 { get; set; }
-        
-        public string Zip { get; set; }
-        
-        public string Town { get; set; }
 
-        public int? CountryId { get; set; }
         public string Notes { get; set; }
+
+        public IList<Address> Addresses { get { return this.addresses; } }
+
+        public Address PrincipalAddress { get; set; }
 
         public string DisplayName
         {
             get
             {
-                string header = string.Format("{0} {1}", this.FirstName,
-                                          this.LastName);
-                if (!string.IsNullOrEmpty(this.Company))
-                    header += string.Format(" ({0})", this.Company);
+                string header = this.FullName ;
+
+                if ( this.PrincipalAddress != null && this.PrincipalAddress.Town != null )
+                {
+                    header += " from " + this.PrincipalAddress.Town;
+                }
 
                 return header;
 
             }
         }
+
+        public string FullName { get { return string.Format("{0} {1}", this.FirstName, this.LastName); } }
 
         public override string ToString()
         {
