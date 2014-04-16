@@ -17,6 +17,15 @@ namespace ContactManager.Entities
 
         public Country Country { get; set; }
 
-        public string FullAddress { get { return string.Format("{0}, {1}", this.Town, this.Country);}} 
+        public string FullAddress
+        {
+            get
+            {
+                if (this.Country == null)
+                    return this.Town;
+                else
+                    return string.Format("{0}, {1}", this.Town, this.Country.Name);
+            }
+        } 
     }
 }
