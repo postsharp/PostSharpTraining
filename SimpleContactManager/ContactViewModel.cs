@@ -1,4 +1,5 @@
 ﻿using ContactManager.Entities;
+using PostSharp.Patterns.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Text;
 
 namespace ContactManager
 {
+    [NotifyPropertyChanged]
     public class ContactViewModel
     {
         public ContactViewModel()
