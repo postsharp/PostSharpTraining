@@ -72,7 +72,7 @@ namespace ReaderWriterSynchronized
             get { return _lines; }
         }
 
-        [WriterLock]
+        [Writer]
         public void AddFiveLines(Product product)
         {
             this.Lines.Clear();
@@ -88,7 +88,7 @@ namespace ReaderWriterSynchronized
             get { return _discounts; }
         }
 
-        [ReaderLock]
+       // [Reader]
         public void Save(MemoryStream memoryStream)
         {
             if ( this.Lines.Count != 0 && this.Lines.Count != 5 )
