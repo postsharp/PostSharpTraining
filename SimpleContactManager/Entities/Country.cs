@@ -1,3 +1,4 @@
+using PostSharp.Patterns.Threading;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -15,6 +16,7 @@ namespace ContactManager.Entities
 
         public string Name { get; private set; }
 
+        [ExplicitlySynchronized]
         public override string ToString()
         {
             return this.Name;

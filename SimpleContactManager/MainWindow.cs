@@ -43,9 +43,10 @@ namespace ContactManager
         [Dispatched]
         public string SetStatusText( string text )
         {
+            text = text ?? "Ready";
             this.IsEnabled = text == "Ready"; // Ugh
             string previousText = this.pendingOperationStatusBarItem.Content as string;
-            this.pendingOperationStatusBarItem.Content = text ?? "Ready";
+            this.pendingOperationStatusBarItem.Content = text;
             return previousText;
         }
 
@@ -58,6 +59,8 @@ namespace ContactManager
             }
         }
 
+        [Status("Saving")]
+        [Background]
         private void OnSaveClick(object sender, RoutedEventArgs e)
         {
             MemoryStream stream = new MemoryStream(); // Pretend this thing is a floppy disk file.

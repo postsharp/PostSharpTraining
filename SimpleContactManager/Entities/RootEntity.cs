@@ -1,4 +1,7 @@
-﻿using PostSharp.Patterns.Recording;
+﻿using PostSharp.Patterns.Collections;
+using PostSharp.Patterns.Model;
+using PostSharp.Patterns.Recording;
+using PostSharp.Patterns.Threading;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,12 +16,14 @@ namespace ContactManager.Entities
     public class RootEntity : Entity
     {
         public static RootEntity Instance = new RootEntity();
-        private List<Country> countries;
+
+        [Child]
+        private AdvisableCollection<Country> countries;
 
         public RootEntity()
         {
-            this.Contacts = new List<Contact>();
-            this.countries = new List<Country>();
+            this.Contacts = new AdvisableCollection<Contact>();
+            this.countries = new AdvisableCollection<Country>();
 
             foreach (string country in Populate.GetCountries())
             {
@@ -46,18 +51,22 @@ namespace ContactManager.Entities
             RecordingServices.DefaultRecorder.Clear();
         }
 
+        [Child]
         public IList<Contact> Contacts { get; private set; }
 
+        [Reader]
         public IList<Country> GetCountries()
         {
            Thread.Sleep(500);
             return this.countries;
         }
 
+        [Reader]
         public void Serialize(Stream stream)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            formatter.Serialize(stream, this);
+          //  BinaryFormatter formatter = new BinaryFormatter();
+          //  formatter.Serialize(stream, this);
+          // TODO: Make AdvisableCollection serializable and uncomment the code above.
     }
 }
 }

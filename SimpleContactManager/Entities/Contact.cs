@@ -6,6 +6,7 @@ using PostSharp.Patterns.Contracts;
 using PostSharp.Patterns.Recording;
 using PostSharp.Patterns.Model;
 using PostSharp.Patterns.Collections;
+using PostSharp.Patterns.Threading;
 
 namespace ContactManager.Entities
 {
@@ -61,6 +62,7 @@ namespace ContactManager.Entities
 
         public string FullName { get { return string.Format("{0} {1}", this.FirstName, this.LastName); } }
 
+        [ExplicitlySynchronized]
         public override string ToString()
         {
             return this.DisplayName;
