@@ -10,6 +10,7 @@ using PostSharp.Patterns.Collections;
 namespace ContactManager.Entities
 {
     [Recordable]
+    [Serializable]
     public class Contact : Entity
     {
         [Child]

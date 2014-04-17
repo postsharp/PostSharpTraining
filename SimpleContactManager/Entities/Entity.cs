@@ -8,6 +8,7 @@ using PostSharp.Patterns.Model;
 namespace ContactManager.Entities
 {
     [NotifyPropertyChanged]
+    [Serializable]
     public abstract class Entity
     {
       

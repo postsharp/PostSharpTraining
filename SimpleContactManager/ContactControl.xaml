@@ -69,10 +69,7 @@
         <ComboBox HorizontalAlignment="Left" Margin="4,114,0,0" VerticalAlignment="Top" Width="237" ItemsSource="{Binding Path=Contact.Addresses}" SelectedValue="{Binding Path=Contact.PrincipalAddress}" DisplayMemberPath="FullAddress" Grid.Column="1"/>
 
         <ContactManager:AddressControl Margin="24,156,58,0" Grid.ColumnSpan="2" Height="150" VerticalAlignment="Top" DataContext="{Binding Path=Contact.PrincipalAddress}" />
-
-
-        <Button Height="23" HorizontalAlignment="Left" Margin="9,0,0,10" Name="okButton" VerticalAlignment="Bottom" Width="75" Click="OnApplyClick">Apply</Button>
-        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,10,10" Name="deleteButton" VerticalAlignment="Bottom" Width="75" Click="OnDeleteClick">Delete</Button>
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,10,10" Name="deleteButton" VerticalAlignment="Bottom" Width="75" Click="OnDeleteClick" Grid.Column="1">Delete</Button>
         <Label Content="Principal Address" HorizontalAlignment="Left" Margin="12,114,0,0" VerticalAlignment="Top" Width="108"/>
         <Button Name="AddAddressButton"  Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="260,114,0,0" VerticalAlignment="Top" Width="49" Click="AddAddressButton_Click" />
         <Button Name="RemoveAddressButton"  Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="75" Click="RemoveAddressButton_Click" />

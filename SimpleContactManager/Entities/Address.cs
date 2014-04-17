@@ -8,6 +8,7 @@ using System.Text;
 namespace ContactManager.Entities
 {
     [Recordable]
+    [Serializable]
     public class Address : Entity
     {
         public string AddressLine1 { get; set; }
@@ -21,7 +22,15 @@ namespace ContactManager.Entities
         [Reference]
         public Country Country { get; set; }
 
-        [SafeForDependencyAnalysis] 
-        public string FullAddress { get { return string.Format("{0}, {1}", this.Town, this.Country);}} 
+        public string FullAddress
+        {
+            get
+            {
+                if (this.Country == null)
+                    return this.Town;
+                else
+                    return string.Format("{0}, {1}", this.Town, this.Country.Name);
+    }
+}
     }
 }

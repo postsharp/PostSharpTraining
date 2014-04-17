@@ -5,6 +5,7 @@ using System.Threading;
 
 namespace ContactManager.Entities
 {
+    [Serializable]
     public class Country : Entity
     {
         public Country(string name)

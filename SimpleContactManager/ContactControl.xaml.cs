@@ -46,7 +46,7 @@ namespace ContactManager
               Address address = new Address();
               this.contact.Addresses.Add(address);
               this.contact.PrincipalAddress = address;
-    }
+        }
 
           private void RemoveAddressButton_Click(object sender, RoutedEventArgs e)
           {
