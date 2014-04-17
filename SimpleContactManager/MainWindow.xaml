@@ -12,8 +12,12 @@
               <Button Click="OnRefreshClick" ToolTip="Refresh">
               <Image Source="Resources/RefreshDocViewHS.png" Width="16" Height="16"/>
               </Button>
-        
-        </ToolBar>
+
+                <Button Click="OnSaveClick" ToolTip="Save">
+                    <Image Source="Resources/SaveAllHS.png" Width="16" Height="16"/>
+                </Button>
+
+            </ToolBar>
             </ToolBarTray>
         <StatusBar DockPanel.Dock="Bottom" Height="25" >
             <StatusBarItem x:Name="pendingOperationStatusBarItem"  HorizontalAlignment="Right" Margin="0 0 5 0">Ready</StatusBarItem>

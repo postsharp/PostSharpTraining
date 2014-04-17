@@ -7,7 +7,7 @@ namespace ContactManager
 {
     public class CountrySource : Collection<Country>
     {
-        public CountrySource() : base(DatabaseMock.Instance.GetCountries())
+        public CountrySource() : base(RootEntity.Instance.GetCountries())
         {
         }
 

@@ -25,30 +25,25 @@ namespace ContactManager
             this.contact = contact;
         }
 
-        void OnApplyClick(object sender, RoutedEventArgs e)
+        void OnDeleteClick(object sender, RoutedEventArgs e)
         {
             Thread.Sleep(2000);
         }
 
-          void OnDeleteClick(object sender, RoutedEventArgs e)
+        private void AddAddressButton_Click(object sender, RoutedEventArgs e)
         {
-            Thread.Sleep(2000);
+            Address address = new Address();
+            this.contact.Addresses.Add(address);
+            this.contact.PrincipalAddress = address;
         }
 
-          private void AddAddressButton_Click(object sender, RoutedEventArgs e)
-          {
-              Address address = new Address();
-              this.contact.Addresses.Add(address);
-              this.contact.PrincipalAddress = address;
-          }
-
-          private void RemoveAddressButton_Click(object sender, RoutedEventArgs e)
-          {
-              if ( this.contact.PrincipalAddress != null )
-              {
-                  this.contact.Addresses.Remove(this.contact.PrincipalAddress);
-                  this.contact.PrincipalAddress = this.contact.Addresses.FirstOrDefault();
-              }
-          }
+        private void RemoveAddressButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.contact.PrincipalAddress != null)
+            {
+                this.contact.Addresses.Remove(this.contact.PrincipalAddress);
+                this.contact.PrincipalAddress = this.contact.Addresses.FirstOrDefault();
+            }
+        }
     }
 }

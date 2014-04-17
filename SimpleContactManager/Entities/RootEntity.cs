@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading;
 
 namespace ContactManager.Entities
 {
-    public class DatabaseMock
+    [Serializable]
+    public class RootEntity : Entity
     {
-        public static DatabaseMock Instance = new DatabaseMock();
+        public static RootEntity Instance = new RootEntity();
         private List<Country> countries;
 
-        public DatabaseMock()
+        public RootEntity()
         {
             this.Contacts = new List<Contact>();
             this.countries = new List<Country>();
@@ -38,8 +41,6 @@ namespace ContactManager.Entities
                 contact.PrincipalAddress = address;
                 this.Contacts.Add(contact);
             }
-
-
            
         }
 
@@ -49,6 +50,12 @@ namespace ContactManager.Entities
         {
            Thread.Sleep(500);
             return this.countries;
+        }
+
+        public void Serialize(Stream stream)
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, this);
         }
     }
 }

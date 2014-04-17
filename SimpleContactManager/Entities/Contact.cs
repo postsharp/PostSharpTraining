@@ -5,6 +5,7 @@ using System.Data.Common;
 
 namespace ContactManager.Entities
 {
+    [Serializable]
     public class Contact : Entity
     {
         List<Address> addresses = new List<Address>();

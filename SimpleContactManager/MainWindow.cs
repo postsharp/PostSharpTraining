@@ -2,6 +2,8 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using ContactManager.Entities;
+using System.IO;
+using System.Threading;
 
 namespace ContactManager
 {
@@ -31,7 +33,7 @@ namespace ContactManager
             base.OnInitialized( e );
 
 
-            foreach ( Contact contact in DatabaseMock.Instance.Contacts )
+            foreach ( Contact contact in RootEntity.Instance.Contacts )
             {
                 contactListBox.Items.Add( contact );
             }
@@ -39,6 +41,7 @@ namespace ContactManager
 
         public string SetStatusText( string text )
         {
+            this.IsEnabled = text == "Ready"; // Ugh
             string previousText = this.pendingOperationStatusBarItem.Content as string;
             this.pendingOperationStatusBarItem.Content = text ?? "Ready";
             return previousText;
@@ -47,13 +50,21 @@ namespace ContactManager
         private void OnRefreshClick( object sender, RoutedEventArgs e )
         {
             contactListBox.Items.Clear();
-            foreach (Contact contact in DatabaseMock.Instance.Contacts)
+            foreach (Contact contact in RootEntity.Instance.Contacts)
             {
                 contactListBox.Items.Add( contact );
             }
         }
 
-      
+        private void OnSaveClick(object sender, RoutedEventArgs e)
+        {
+            MemoryStream stream = new MemoryStream(); // Pretend this thing is a floppy disk file.
+
+            RootEntity.Instance.Serialize(stream);
+
+            Thread.Sleep(1000);
+
+        }
       
 
         private void ContactListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace ContactManager.Entities
 {
+    [Serializable]
     public class Address : Entity
     {
         public string AddressLine1 { get; set; }
