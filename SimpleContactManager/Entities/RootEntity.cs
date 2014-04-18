@@ -30,7 +30,7 @@ namespace ContactManager.Entities
                 this.countries.Add(new Country(country));
             }
 
-            Country russia = this.countries.Single( c => c.Name == "Russia");
+            Country russia = this.countries.Single(c => c.Name == "Russia");
 
             foreach (string contactName in Populate.GetContacts())
             {
@@ -57,16 +57,15 @@ namespace ContactManager.Entities
         [Reader]
         public IList<Country> GetCountries()
         {
-           Thread.Sleep(500);
+            Thread.Sleep(500);
             return this.countries;
         }
 
         [Reader]
         public void Serialize(Stream stream)
         {
-          //  BinaryFormatter formatter = new BinaryFormatter();
-          //  formatter.Serialize(stream, this);
-          // TODO: Make AdvisableCollection serializable and uncomment the code above.
+            BinaryFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, this);
+        }
     }
-}
 }
