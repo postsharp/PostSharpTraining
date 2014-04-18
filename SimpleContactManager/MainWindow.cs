@@ -41,9 +41,10 @@ namespace ContactManager
 
         public string SetStatusText( string text )
         {
+            text = text ?? "Ready";
             this.IsEnabled = text == "Ready"; // Ugh
             string previousText = this.pendingOperationStatusBarItem.Content as string;
-            this.pendingOperationStatusBarItem.Content = text ?? "Ready";
+            this.pendingOperationStatusBarItem.Content = text;
             return previousText;
         }
 
