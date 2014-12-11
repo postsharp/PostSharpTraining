@@ -42,7 +42,7 @@ namespace ContactManager.Entities
 
                 if ( this.PrincipalAddress != null && this.PrincipalAddress.Town != null )
                 {
-                    header += " from " + this.PrincipalAddress.Town;
+                    header += " (" + this.PrincipalAddress.Town + ")";
                 }
 
                 return header;

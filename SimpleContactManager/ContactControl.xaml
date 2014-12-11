@@ -1,7 +1,7 @@
 ﻿<UserControl x:Class="ContactManager.ContactControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Height="500" Width="600" 
+    Height="460" Width="600" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              mc:Ignorable="d" 
@@ -25,7 +25,7 @@
 
         <Label HorizontalAlignment="Left" Margin="12,31,0,0" VerticalAlignment="Top" Width="69" Height="24" Content="Last Name"/>
 
-        <Label HorizontalAlignment="Left" Margin="12,55,0,0" VerticalAlignment="Top" Width="69" Height="24" Content="Company"/>
+        <Label HorizontalAlignment="Left" Margin="12,55,0,0" VerticalAlignment="Top" Width="69" Height="26" Content="Company"/>
 
         <Label HorizontalAlignment="Left" Margin="12,81,0,0" VerticalAlignment="Top" Width="69" Height="24" Content="Position"/>
 
@@ -66,16 +66,17 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <ComboBox HorizontalAlignment="Left" Margin="4,114,0,0" VerticalAlignment="Top" Width="237" ItemsSource="{Binding Path=Contact.Addresses}" SelectedValue="{Binding Path=Contact.PrincipalAddress}" DisplayMemberPath="FullAddress" Grid.Column="1"/>
+        <ComboBox HorizontalAlignment="Left" Margin="4,114,0,0" VerticalAlignment="Top" Width="242" ItemsSource="{Binding Path=Contact.Addresses}" SelectedValue="{Binding Path=Contact.PrincipalAddress}" DisplayMemberPath="FullAddress" Grid.Column="1"/>
 
-        <ContactManager:AddressControl Margin="24,156,58,0" Grid.ColumnSpan="2" Height="150" VerticalAlignment="Top" DataContext="{Binding Path=Contact.PrincipalAddress}" />
-        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,10,10" Name="deleteButton" VerticalAlignment="Bottom" Width="75" Click="OnDeleteClick" Grid.Column="1">Delete</Button>
+        <ContactManager:AddressControl Margin="24,180,57,0" Grid.ColumnSpan="2" Height="150" VerticalAlignment="Top" DataContext="{Binding Path=Contact.PrincipalAddress}" />
+        <Button Height="23" HorizontalAlignment="Right" Margin="0,0,10,10" Name="deleteButton" VerticalAlignment="Bottom" Width="75" Click="OnDeleteClick" Grid.Column="1" RenderTransformOrigin="0.507,-0.696">Delete</Button>
         <Label Content="Principal Address" HorizontalAlignment="Left" Margin="12,114,0,0" VerticalAlignment="Top" Width="108"/>
-        <Button Name="AddAddressButton"  Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="260,114,0,0" VerticalAlignment="Top" Width="49" Click="AddAddressButton_Click" />
-        <Button Name="RemoveAddressButton"  Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="328,114,0,0" VerticalAlignment="Top" Width="75" Click="RemoveAddressButton_Click" />
-        <Label Content="Label" HorizontalAlignment="Left" Margin="24,306,0,0" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,311,0,0" TextWrapping="Wrap" Text="{Binding Contact.FullName}" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,332,0,0" TextWrapping="Wrap" Text="{Binding AddressCard}" VerticalAlignment="Top" Height="64" Width="280"/>
+        <Button Name="AddAddressButton"  Content="Add" Grid.Column="1" HorizontalAlignment="Left" Margin="251,114,0,0" VerticalAlignment="Top" Width="80" Click="AddAddressButton_Click" />
+        <Button Name="RemoveAddressButton"  Content="Remove" Grid.Column="1" HorizontalAlignment="Left" Margin="336,114,0,0" VerticalAlignment="Top" Width="80" Click="RemoveAddressButton_Click" />
+        <Label Content="Label Preview" HorizontalAlignment="Left" Margin="24,356,0,0" VerticalAlignment="Top"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,358,0,0" TextWrapping="Wrap" Text="{Binding Contact.FullName}" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="0,379,0,0" TextWrapping="Wrap" Text="{Binding AddressCard}" VerticalAlignment="Top" Height="64" Width="280"/>
+        <GroupBox x:Name="header" Header="Address Details" HorizontalAlignment="Left" Margin="12,155,0,0" VerticalAlignment="Top" Height="180" Width="578" Grid.ColumnSpan="2"/>
 
     </Grid>
 </UserControl>

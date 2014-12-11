@@ -187,22 +187,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Edit_UndoHS.png" />
+    <Resource Include="Resources\New.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Edit_RedoHS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\RefreshDocViewHS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\NewCardHS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\SychronizeListHS.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\SaveAllHS.png" />
+    <Resource Include="Resources\Save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
